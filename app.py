@@ -1,12 +1,17 @@
 from extensions import app, db
 from flask import render_template, redirect, url_for, request
 from flask_wtf import FlaskForm
+import numpy as np
+import pandas as pd
+import pickle
 from flask_bootstrap import Bootstrap
 from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 
+filename = 'heart-disease-prediction-knn-model.pkl'
+model = pickle.load(open(filename,'rb'))
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -68,6 +73,36 @@ def logout():
 @login_required
 def dashboard():
     return render_template("dashboard.html")
+
+@app.route("/heart")
+@login_required
+def heart():
+    return render_template("heart.html")
+
+@app.route('/predict', methods=['GET','POST'])
+def predict():
+    if request.method == 'POST':
+
+        age = int(request.form['age'])
+        sex = request.form.get('sex')
+        cp = request.form.get('cp')
+        trestbps = int(request.form['trestbps'])
+        chol = int(request.form['chol'])
+        fbs = request.form.get('fbs')
+        restecg = int(request.form['restecg'])
+        thalach = int(request.form['thalach'])
+        exang = request.form.get('exang')
+        oldpeak = float(request.form['oldpeak'])
+        slope = request.form.get('slope')
+        ca = int(request.form['ca'])
+        thal = request.form.get('thal')
+        
+        data = np.array([[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]])
+        my_prediction = model.predict(data)
+        print(my_prediction)
+        return render_template('result.html', prediction=my_prediction)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
