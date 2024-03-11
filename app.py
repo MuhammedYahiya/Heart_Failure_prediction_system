@@ -10,8 +10,11 @@ from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
 
-filename = 'heart-disease-prediction-knn-model.pkl'
-model = pickle.load(open(filename,'rb'))
+
+# Load the model
+with open('knn.pkl', 'rb') as file:
+    model = pickle.load(file)
+
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -78,30 +81,39 @@ def dashboard():
 @login_required
 def heart():
     return render_template("heart.html")
-
-@app.route('/predict', methods=['GET','POST'])
+@login_required
+@app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
-
+        # Extract input values from the form
         age = int(request.form['age'])
-        sex = request.form.get('sex')
-        cp = request.form.get('cp')
+        sex = int(request.form['sex'])
+        cp = int(request.form['cp'])
         trestbps = int(request.form['trestbps'])
         chol = int(request.form['chol'])
-        fbs = request.form.get('fbs')
+        fbs = int(request.form['fbs'])
         restecg = int(request.form['restecg'])
         thalach = int(request.form['thalach'])
-        exang = request.form.get('exang')
+        exang = int(request.form['exang'])
         oldpeak = float(request.form['oldpeak'])
-        slope = request.form.get('slope')
+        slope = int(request.form['slope'])
         ca = int(request.form['ca'])
-        thal = request.form.get('thal')
-        
-        data = np.array([[age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal]])
-        my_prediction = model.predict(data)
-        print(my_prediction)
-        return render_template('result.html', prediction=my_prediction)
+        thal = int(request.form['thal'])
 
+        # Create a NumPy array with the input data
+        new_data = np.array([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
+        
+        # Make prediction using the loaded model
+        prediction = model.predict(new_data)
+        print(prediction)
+
+        # Define prediction text
+      
+
+        return render_template('result.html', prediction=prediction)
+
+
+       
 
 
 if __name__ == "__main__":
