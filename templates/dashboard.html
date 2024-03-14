@@ -1,136 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>RiskAssess | Get Started</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-	<link rel="stylesheet" type="text/css" href="static/css/aboutus.css">
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.5/examples/carousel/"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
+    <title>RiskAssess | Heart Disease Prediction</title>
+  </head>
+  <style>
+    button {
+      border-style: none;
+    }
 
-    <style>
-        body {
-    padding-top: 3.5rem;
-}
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      text-align: center;
+    }
 
-nav {
-    font-family: sans-serif;
-}
+    form {
+      margin-top: 3%;
+      margin-left: 29%;
+      margin-right: 21%;
+    }
 
-.navbar-brand {
-    font-size: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
-    </style>
+    form fieldset {
+      padding: 30px;
+      border-width: 20px;
+      border-style: groove;
+      border-color: #5a5a5a;
+      background-color: #fff;
+    }
 
-</head>
-<body>
-    <form id="form1">
-        <header>
-            <!--Navigation Bar-->
-			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <a class="navbar-brand" href="#"><b>RISK ASSESS</b></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/dashboard">Get Started</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/disindex">Disease Index</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cancer">Breast Cancer</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/diabetes">Diabetes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/heart">Heart Disease</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/kidney">Kidney Disease</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/liver">Liver Disease</a>
-                    </li>
-                    <li class="nav-item">
-		                <a class="nav-link" href="#">|</a>
-		            </li>
-                    <li class="nav-item">
-		                <a class="nav-link" href="/logout">Logout</a>
-		            </li>
-                    </ul>
-                </div>
-            </nav>
+    fieldset h1 {
+      color: #5a5a5a;
+      padding-bottom: 20px;
+      margin-left: 35px;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 28px;
+      text-align: center;
+    }
 
-         <main role="main">
+    fieldset label {
+      margin-left: 20px;
+      margin-right: 40px;
+      padding: 23px;
+      font-size: 20px;
+      display: inline-block;
+      width: 240px;
+    }
+    fieldset input {
+      padding: 8px;
+      color: #938c8c;
+    }
+    fieldset input:focus {
+      color: #000;
+    }
+    fieldset button {
+      margin-left: 60px;
+      color: #fff;
+      background-color: #5a5a5a;
+      border-radius: 3px;
+      padding: 13px 39px;
+      text-align: center;
+      letter-spacing: 0.9px;
+      text-decoration: none;
+      margin-right: 15px;
+      line-height: 26px;
+      font-size: 16px;
+      box-shadow: 0px 1px 3px 0px #5a5a5a;
+      right: 0px;
+      margin-top: 15px;
+    }
 
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-4">Hello! Lets Get Started with RiskAssess</h1>
-      <p>Welcome to RiskAssess!, a risk assessment system for medical institutions to generate risk assessments for their patients. RiskAssess started off as a company that formed strong relationships with medical institutions to help them generate their assessments with ease and maximum efficiency thus saving the organization's valuable time.
-          Click below to learn about the diseases that RiskAssess is capable of assessing.</p>
-      <p><a class="btn btn-primary btn-lg" href="/disindex" role="button">Get Started &raquo;</a></p>
-    </div>
-  </div>
+    .submit {
+      margin-left: 60px;
+      color: #fff;
+      background-color: #5a5a5a;
+      border-radius: 3px;
+      padding: 13px 39px;
+      text-align: center;
+      letter-spacing: 0.9px;
+      text-decoration: none;
+      margin-right: 10px;
+      line-height: 26px;
+      font-size: 16px;
+      box-shadow: 0px 1px 3px 0px #5a5a5a;
+      right: 100px;
+      margin-top: 15px;
+    }
 
-  <div class="container">
+    #link_to_edit {
+      padding-left: 45px;
+    }
 
-    <div class="row">
-      <div class="col-md-4">
-        <h2>1. Cancer Prediction</h2>
-        <p>Navigate to the "Cancer" section and add the corresponding details and click on predict to learn whether the patient is at the risk of this illness/disease.</p>
+    .fieldset {
+      margin-top: 3%;
+      margin-left: 0%;
+      margin-right: 0%;
+      padding: 30px;
+      border-width: 25px;
+      border-style: ridge;
+      border-color: #257a7a;
+      box-shadow: 6px 13px 13px 0px black;
+      background-color: #ebfffa;
+    }
+  </style>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#"><b>RISK ASSESS</b></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">|</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <br /><br />
+    <h1 style="text-align: center">Heart Disease Prediction</h1>
+    <h5 style="text-align: center">Please enter the patient details</h5>
 
-      </div>
-      <div class="col-md-4">
-        <h2>2. Diabetes Prediction</h2>
-        <p>Navigate to the "Diabetes" section and add the corresponding details and click on predict to learn whether the patient is at the risk of this illness/disease.</p>
-
-      </div>
-      <div class="col-md-4">
-        <h2>3. Heart Disease</h2>
-        <p>Navigate to the "Heart Disease" section and add the corresponding details and click on predict to learn whether the patient is at the risk of this illness/disease.</p>
-
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-md-4">
-        <h2>4. Kidney Disease</h2>
-        <p>Navigate to the "Kidney Disease" section and add the corresponding details and click on predict to learn whether the patient is at the risk of this illness/disease.</p>
-
-      </div>
-      <div class="col-md-4">
-        <h2>5. Liver Disease </h2>
-        <p>Navigate to the "Liver Disease" section and add the corresponding details and click on predict to learn whether the patient is at the risk of this illness/disease.</p>
-
-      </div>
-      <div class="col-md-4">
-        <h2>6. Disease Index</h2>
-        <p>Navigate to the "Disease Index" section and gain in-depth information about each of these diseases.</p>
-
-      </div>
-    </div>
-    </div>
-    <hr>
-  </div>
-</main>
-
-<footer class="container">
-  <p>&copy;riskassess. All Rights Reserved</p>
-</footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="../assets/dist/js/bootstrap.bundle.js"></script>
-
+    <form action="{{ url_for('predict')}}" method="post" class="form-inline">
+      <fieldset>
+        <div class="tabcontent" id="new">
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input
+              class="form-control"
+              type="text"
+              id="age"
+              name="age"
+              required
+              placeholder="Your age.."
+            />
+          </div>
+          <div class="form-group">
+            <label for="sex">Sex</label>
+            <select class="form-control" id="sex" name="sex" required>
+              <option selected>----select option----</option>
+              <option value="0">Female</option>
+              <option value="1">Male</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cp">Chest Pain Type</label>
+            <select class="form-control" id="cp" name="cp" required>
+              <option selected>----select option----</option>
+              <option value="0">Typical Angina</option>
+              <option value="1">Atypical Angina</option>
+              <option value="2">Non-anginal Pain</option>
+              <option value="3">Asymtomatic</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="trestbps">Resting Blood Pressure</label>
+            <input
+              class="form-control"
+              type="text"
+              id="trestbps"
+              name="trestbps"
+              required
+              placeholder="A number in range [94-200] mmHg"
+              min="94"
+              max="202"
+            />
+          </div>
+          <div class="form-group">
+            <label for="chol">Serum Cholesterol</label>
+            <input
+              class="form-control"
+              type="text"
+              id="chol"
+              name="chol"
+              required
+              placeholder="A number in range [126-564] mg/dl"
+              min="126"
+              max="564"
+            />
+          </div>
+          <div class="form-group">
+            <label for="fbs">Fasting Blood Sugar</label>
+            <select class="form-control" id="fbs" name="fbs" required>
+              <option selected>----select option----</option>
+              <option value="0">Less than 120 mg/dl</option>
+              <option value="1">Greater than 120 mg/dl</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="restecg">Resting ECG Results</label>
+            <select class="form-control" id="restecg" name="restecg" required>
+              <option selected>----select option----</option>
+              <option value="0">Normal</option>
+              <option value="1">Having ST-T wave abnormality</option>
+              <option value="2"> left ventricular hypertrophy </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="thalach">Max Heart Rate </label>
+            <input
+              class="form-control"
+              type="text"
+              id="thalach"
+              name="thalach"
+              required
+              placeholder="A number in range [71-202] bpm"
+              min="71"
+              max="202"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exang">Exercise-induced Angina</label>
+            <select class="form-control" id="exang" name="exang" required>
+              <option selected>----select option----</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="oldpeak">ST depression</label>
+            <input
+              class="form-control"
+              type="text"
+              id="oldpeak"
+              name="oldpeak"
+              required
+              placeholder="ST depression, typically in [0-6.2]"
+              min="0"
+              max="6.2"
+            />
+          </div>
+          <div class="form-group">
+            <label for="slope">slope of the peak exercise ST segment</label>
+            <select class="form-control" id="slope" name="slope" required>
+              <option selected>----select option----</option>
+              <option value="0">Upsloping</option>
+              <option value="1">Flat</option>
+              <option value="2">Downsloping</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="ca">Number of Major vessels</label>
+            <input
+              class="form-control"
+              type="text"
+              id="ca"
+              name="ca"
+              required
+              pattern="[0-3]"
+              placeholder="Typically in [0-3]"
+            />
+          </div>
+          <div class="form-group">
+            <label for="thal">Thalassemia</label>
+            <select class="form-control" id="thal" name="thal" required>
+              <option selected>----select option----</option>
+              <option value="1">Normal</option>
+              <option value="2">Fixed Defect</option>
+              <option value="3">Reversible Defect</option>
+            </select>
+          </div>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
+            type="submit"
+            class="btn btn-primary btn-lg"
+          >
+            Predict
+          </button>
+        </div>
+      </fieldset>
     </form>
-</body>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
-
-

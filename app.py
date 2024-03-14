@@ -12,7 +12,7 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 
 
 # Load the model
-with open('knn.pkl', 'rb') as file:
+with open('./model/knn.pkl', 'rb') as file:
     model = pickle.load(file)
 
 bootstrap = Bootstrap(app)
@@ -107,10 +107,13 @@ def predict():
         prediction = model.predict(new_data)
         print(prediction)
 
-        # Define prediction text
+        if prediction == 1:
+            res_val = "Oops! You have Chances of Heart Disease."
+        else:
+            res_val = "Great! You DON'T chances have Heart Disease."
       
 
-        return render_template('result.html', prediction=prediction)
+        return render_template('result.html', prediction_text=res_val)
 
 
        

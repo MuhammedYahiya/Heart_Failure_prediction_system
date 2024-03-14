@@ -78,15 +78,7 @@ nav {
         <h1 class="display-5">Risk Assessment</h1>
         <p class="lead">Please find below the Risk Assessment</p>
     </div>
-    <div class="results">
-        {% if prediction==1 %}
-            <h1>Prediction: <span class='danger'>Oops! You have Chances of Heart Disease.</span></h1>
-            
-        {% elif prediction==0 %}
-            <h1>Prediction: <span class='safe'>Great! You DON'T chances have Heart Disease.</span></h1>
-            
-        {% endif %}
-    </div>
+    <div class="container themed-container"><h1 style="text-align: center;">{{ prediction_text }}</h1></div>
     <p style="text-align: center;">Click <a href="/disindex">here</a> to learn more about Heart Disease</p>
     <p style="text-align: center;">&copy;riskassess.com</p>
     </div>

@@ -33,7 +33,7 @@ try:
     print("Model parameters:", model.get_params())
 
     # New data for prediction
-    new_data = np.array([[59,1,0,170,326,0,0,140,1,3.4,0,0,3]])
+    new_data = np.array([[56,1,2,130,256,1,0,142,1,0.6,1,1,1]])
     print("New data:", new_data)
 
     # Reshape new_data array
