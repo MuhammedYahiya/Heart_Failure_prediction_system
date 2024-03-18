@@ -81,6 +81,12 @@ def dashboard():
 @login_required
 def heart():
     return render_template("heart.html")
+
+@app.route("/disindex")
+
+def disindex():
+    return render_template("disindex.html")
+
 @login_required
 @app.route('/predict', methods=['POST'])
 def predict():
