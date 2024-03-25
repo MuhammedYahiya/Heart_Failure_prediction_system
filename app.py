@@ -1,5 +1,5 @@
 from extensions import app, db
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, jsonify
 from flask_wtf import FlaskForm
 import numpy as np
 import pandas as pd
@@ -9,7 +9,12 @@ from wtforms import StringField, PasswordField, BooleanField
 from wtforms.validators import InputRequired, Email, Length
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
-
+import torch
+from chat_bot_model.model import NeuralNet
+from chat_bot_model.nltk_utils import bag_of_words, tokenize
+import random
+import json
+ 
 
 # Load the model
 with open('./model/knn.pkl', 'rb') as file:
@@ -121,8 +126,58 @@ def predict():
 
         return render_template('result.html', prediction_text=res_val)
 
+# Load the trained data
+data = torch.load("./chat_bot_model/data.pth")
+model_state = data["model_state"]
+input_size = data["input_size"]
+hidden_size = data["hidden_size"]
+output_size = data["output_size"]
+all_words = data["all_words"]
+tags = data["tags"]
+with open('./chat_bot_model/intents.json', 'r') as file:
+    intents = json.load(file)
 
-       
+# Initialize and load your model
+model = NeuralNet(input_size, hidden_size, output_size)
+model.load_state_dict(model_state)
+model.eval()
+
+def chatbot_response(sentence):
+    # Process the input sentence
+    sentence = tokenize(sentence)
+    X = bag_of_words(sentence, all_words)
+    X = X.reshape(1, X.shape[0])
+    X = torch.from_numpy(X)
+
+    # Get the predicted tag
+    output = model(X)
+    _, predicted = torch.max(output, dim=1)
+    tag = tags[predicted.item()]
+
+    # Find the appropriate response
+    for intent in intents["intents"]:
+        if intent["tag"] == tag:
+            response = random.choice(intent["responses"])
+            break
+
+    return response
+
+@app.route('/chatbot')
+def chat():
+    return render_template('chat.html')
+    
+    
+@app.route('/chatbot', methods=['POST'])    
+def chatbot():
+    try:
+        data = request.get_json()
+        message = data['message']
+        response = chatbot_response(message)
+        return jsonify({"response": response})
+    except Exception as e:
+        app.logger.error(f"Error processing request: {e}")
+        return jsonify({"error": "An error occurred"}), 500
+
 
 
 if __name__ == "__main__":
