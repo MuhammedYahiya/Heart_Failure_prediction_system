@@ -18,7 +18,7 @@ import json
 
 # Load the model
 with open('./model/knn.pkl', 'rb') as file:
-    model = pickle.load(file)
+    model_knn = pickle.load(file)
 
 bootstrap = Bootstrap(app)
 login_manager = LoginManager()
@@ -115,7 +115,7 @@ def predict():
         new_data = np.array([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
         
         # Make prediction using the loaded model
-        prediction = model.predict(new_data)
+        prediction = model_knn.predict(new_data)
         print(prediction)
 
         if prediction == 1:
