@@ -116,15 +116,21 @@ def predict():
         
         # Make prediction using the loaded model
         prediction = model_knn.predict(new_data)
-        print(prediction)
+        
+        # Calculate the probability of each class
+        probabilities = model_knn.predict_proba(new_data)[0]
+        
+        # Calculate the intensity percentage
+        intensity_percentage = max(probabilities) * 100
 
         if prediction == 1:
             res_val = "Oops! You have Chances of Heart Disease."
         else:
             res_val = "Great! You DON'T chances have Heart Disease."
-      
 
-        return render_template('result.html', prediction_text=res_val)
+        return render_template('result.html', prediction_text=res_val, intensity_percentage=intensity_percentage)
+
+
 
 # Load the trained data
 data = torch.load("./chat_bot_model/data.pth")
