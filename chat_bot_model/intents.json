@@ -32,53 +32,100 @@
       "responses": ["Happy to help!", "Any time!", "My pleasure"]
     },
     {
-      "tag": "items",
+      "tag": "symptoms",
       "patterns": [
-        "Which items do you have?",
-        "What kinds of items are there?",
-        "What do you sell?"
+        "What are the typical symptoms of high-intensity heart disease?"
       ],
       "responses": [
-        "We sell coffee and tea",
-        "We have coffee and tea"
+        "Common symptoms include severe chest pain, shortness of breath, fatigue, and swelling in the legs or abdomen. However, symptoms can vary among individuals."
       ]
     },
     {
-      "tag": "payments",
+      "tag": "chest_pain_management",
       "patterns": [
-        "Do you take credit cards?",
-        "Do you accept Mastercard?",
-        "Can I pay with Paypal?",
-        "Are you cash only?"
+        "How can I manage the intense chest pain I'm experiencing?"
       ],
       "responses": [
-        "We accept VISA, Mastercard and Paypal",
-        "We accept most major credit cards, and Paypal"
+        "It's important to seek immediate medical attention if you're experiencing severe chest pain. Your healthcare provider can provide appropriate treatment options to manage your symptoms and improve your condition."
       ]
     },
     {
-      "tag": "delivery",
+      "tag": "lifestyle_changes",
       "patterns": [
-        "How long does delivery take?",
-        "How long does shipping take?",
-        "When do I get my delivery?"
+        "What lifestyle changes can I make to improve my heart health?"
       ],
       "responses": [
-        "Delivery takes 2-4 days",
-        "Shipping takes 2-4 days"
+        "Adopting a heart-healthy diet, engaging in regular exercise, quitting smoking (if applicable), managing stress, and monitoring blood pressure and cholesterol levels are important steps in managing heart disease."
       ]
     },
     {
-      "tag": "funny",
+      "tag": "foods_to_avoid",
       "patterns": [
-        "Tell me a joke!",
-        "Tell me something funny!",
-        "Do you know a joke?"
+        "Are there any specific foods I should avoid?"
       ],
       "responses": [
-        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-        "What did the buffalo say when his son left for college? Bison."
+        "Limiting intake of saturated fats, sodium, and refined sugars can help improve heart health. Focus on consuming more fruits, vegetables, whole grains, and lean proteins."
+      ]
+    },
+    {
+      "tag": "medications",
+      "patterns": [
+        "What medications are commonly prescribed for high-intensity heart disease?"
+      ],
+      "responses": [
+        "Medications such as beta-blockers, ACE inhibitors, statins, and antiplatelet agents are often prescribed to manage symptoms and reduce the risk of complications."
+      ]
+    },
+    {
+      "tag": "alternative_treatments",
+      "patterns": [
+        "Are there any alternative or complementary treatments I can consider?"
+      ],
+      "responses": [
+        "Some individuals find benefits from practices like acupuncture, meditation, or certain herbal supplements, but it's important to consult with your healthcare provider before trying any alternative treatments."
+      ]
+    },
+    {
+      "tag": "monitoring_vital_signs",
+      "patterns": [
+        "How often should I monitor my blood pressure and other vital signs?"
+      ],
+      "responses": [
+        "Your healthcare provider can provide guidance on how frequently you should monitor your blood pressure, but typically it's recommended to check it regularly at home and during clinic visits."
+      ]
+    },
+    {
+      "tag": "worsening_condition",
+      "patterns": [
+        "What signs or symptoms should I watch out for that indicate worsening of my condition?"
+      ],
+      "responses": [
+        "Symptoms such as increasing chest pain, worsening shortness of breath, sudden weight gain, or swelling in the legs can indicate a worsening of your condition. It's important to seek medical attention if you experience any of these symptoms."
+      ]
+    },
+    {
+      "tag": "emotional_support",
+      "patterns": [
+        "I'm feeling overwhelmed and anxious about my heart condition. What can I do?"
+      ],
+      "responses": [
+        "Managing a heart condition can be challenging, both physically and emotionally. Consider seeking support from loved ones, joining a support group, or talking to a mental health professional for additional support and coping strategies."
+      ]
+    },
+    {
+      "tag": "sleep_cycle",
+      "patterns": [
+        "Could you recommend a sleep cycle?"
+      ],
+      "responses": [
+        "Sure! To recommend a sleep cycle, I need to ask you a few questions."
       ]
     }
+    
   ]
+
 }
+
+  
+
+
