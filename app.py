@@ -128,7 +128,20 @@ def predict():
         else:
             res_val = "Great! You DON'T chances have Heart Disease."
 
-        return render_template('result.html', prediction_text=res_val, intensity_percentage=intensity_percentage)
+        # Determine sleep cycle based on intensity percentage
+        if intensity_percentage >= 80:
+            sleep_cycle = "9 hours"
+        elif intensity_percentage >= 60:
+            sleep_cycle = "8 hours"
+        elif intensity_percentage >= 40:
+            sleep_cycle = "7 hours"
+        elif intensity_percentage >= 20:
+            sleep_cycle = "6 hours"
+        else:
+            sleep_cycle = "5 hours"
+
+        return render_template('result.html', prediction_text=res_val, intensity_percentage=intensity_percentage, sleep_cycle=sleep_cycle)
+
 
 
 
