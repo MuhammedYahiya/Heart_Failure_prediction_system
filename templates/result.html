@@ -1,89 +1,139 @@
 <!DOCTYPE html>
-<p lang="en">
-<head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RiskAssess | Assessment</title>
-    <meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-	<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/carousel/">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-    <script type="text/javascript" language="JavaScript">
-    window.onload = function () {
-    document.getElementById("download")
-        .addEventListener("click", () => {
-            const invoice = this.document.getElementById("assess");
-            console.log(invoice);
-            console.log(window);
-            var opt = {
-                margin: 1,
-                filename: 'Heart_Assessment.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-            };
-            html2pdf().from(invoice).set(opt).save();
-        })
-   }</script>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+    />
     <style>
-        body {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    color: #5a5a5a;
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-}
+      body {
+        font-family: "Poppins", sans-serif;
+        padding-top: 5rem;
+        color: #333;
+      }
 
-nav {
-    font-family: sans-serif;
-}
+      nav {
+        font-family: sans-serif;
+      }
 
-.navbar-brand {
-    font-size: 20px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}
+      .navbar-brand {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+      }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
+      .navbar {
+        background-color: #007bff;
+      }
 
-.container {
-    max-width: 960px;
-}
+      .pricing-header {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 1rem;
+      }
 
-.pricing-header {
-    max-width: 700px;
-}
+      .themed-container {
+        background-color: #f8f9fa;
+        border: 1px solid #ccc;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        border-radius: 5px;
+      }
 
-.card-deck .card {
-    min-width: 220px;
-}
+      .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        margin-top: 1rem;
+      }
 
-.themed-container {
-    padding: 15px;
-    margin-bottom: 30px;
-    background-color: rgba(0, 123, 255, .15);
-    border: 1px solid rgba(0, 123, 255, .2);
-}
+      .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+      }
+
+      footer {
+        text-align: center;
+        margin-top: 2rem;
+        color: #888;
+      }
+
+      footer a {
+        color: #007bff;
+        text-decoration: none;
+      }
     </style>
-</head>
-    <body>
+  </head>
+  <body>
     <div id="assess">
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-        <h1 class="display-5">Risk Assessment</h1>
-        <p class="lead">Please find below the Risk Assessment</p>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">RiskAssess</a>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="pricing-header">
+          <h1 class="display-4 text-center">Risk Assessment</h1>
+          <p class="lead text-center">Please find below the Risk Assessment</p>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="themed-container">
+                  <h1 class="text-center">{{ prediction_text }}</h1>
+                  <h2 class="text-center">Intensity: {{ intensity_percentage }}%</h2>
+                  <h2 class="text-center">Suggested Sleep Cycle: {{ sleep_cycle }}</h2>
+                  <p class="text-center">
+                    Click <a href="/chatbot">here</a> to chat with our Medbot.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+      <footer>
+        <div class="container">
+          &copy; 2024 RiskAssess.com | All Rights Reserved |
+          <a href="#">Privacy Policy</a>
+        </div>
+      </footer>
+
+      <div class="container text-center">
+        <button class="btn btn-primary btn-lg" id="download">Download</button>
+      </div>
     </div>
-    <div class="container themed-container"><h1 style="text-align: center;">{{ prediction_text }}</h1></div>
-    <div class="container themed-container"><h1 style="text-align: center;">Intensity: {{ intensity_percentage }}%</h1></div>
-    <p style="text-align: center;">Click <a href="/chatbot">here</a> to chat with or Medbot.</p>
-    <p style="text-align: center;">&copy;riskassess.com</p>
-    </div>
-    <br/>
-     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary btn-lg" id="download">Download</button>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script>
+      window.onload = function () {
+        document.getElementById("download").addEventListener("click", () => {
+          const invoice = document.getElementById("assess");
+          var opt = {
+            margin: 1,
+            filename: "Heart_Assessment.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "in", format: "letter", orientation: "landscape" },
+          };
+          html2pdf().from(invoice).set(opt).save();
+        });
+      };
+    </script>
+  </body>
 </html>
