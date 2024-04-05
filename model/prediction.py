@@ -33,7 +33,7 @@ try:
     print("Model parameters:", model.get_params())
 
     # New data for prediction
-    new_data = np.array([[56,1,2,130,256,1,0,142,1,0.6,1,1,1]])
+    new_data = np.array([[52,1,1,134,201,0,1,158,0,0.8,2,1,2]])
     print("New data:", new_data)
 
     # Reshape new_data array
@@ -44,3 +44,10 @@ try:
     print("Prediction:", prediction)
 except Exception as e:
     print("Error loading the model:", e)
+# Get the predicted class probabilities
+class_probabilities = model.predict_proba(new_data)
+print("Class probabilities:", class_probabilities)
+
+# Calculate the percentage based on the probabilities
+percentage = class_probabilities[0][1] * 100
+print("Percentage prediction:", percentage)
