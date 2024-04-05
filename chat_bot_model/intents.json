@@ -19,7 +19,11 @@
     },
     {
       "tag": "goodbye",
-      "patterns": ["Bye", "See you later", "Goodbye"],
+      "patterns": [
+        "Bye",
+        "See you later",
+        "Goodbye"
+      ],
       "responses": [
         "See you later, thanks for visiting",
         "Have a nice day",
@@ -28,8 +32,17 @@
     },
     {
       "tag": "thanks",
-      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "That's helpful",
+        "Thank's a lot!"
+      ],
+      "responses": [
+        "Happy to help!",
+        "Any time!",
+        "My pleasure"
+      ]
     },
     {
       "tag": "symptoms",
@@ -113,19 +126,40 @@
       ]
     },
     {
-      "tag": "sleep_cycle",
+      "tag": " good sleep cycle",
       "patterns": [
-        "Could you recommend a sleep cycle?"
+        "What is a good sleep cycle?"
       ],
       "responses": [
-        "Sure! To recommend a sleep cycle, I need to ask you a few questions."
+        "A good sleep cycle typically includes 7-9 hours of quality sleep per night."
+      ]
+    },
+    {
+      "tag": " improve sleep cycle",
+      "patterns": [
+        "How can I improve my sleep cycle?"
+      ],
+      "responses": [
+        "To improve your sleep cycle, try to maintain a consistent bedtime and wake-up time, create a relaxing bedtime routine, and ensure your sleep environment is comfortable."
+      ]
+    },
+    {
+      "tag": " healthy sleep cycle",
+      "patterns": [
+        "Do you have any tips for a healthy sleep cycle?"
+      ],
+      "responses": [
+        "Tips for a healthy sleep cycle include avoiding caffeine and electronics before bed, exercising regularly, and managing stress levels."
+      ]
+    },
+    {
+      "tag": "  recommended sleep cycle",
+      "patterns": [
+        "What are the recommended sleep hours?"
+      ],
+      "responses": [
+        "The recommended sleep hours for adults are 7-9 hours per night."
       ]
     }
-    
   ]
-
 }
-
-  
-
-
