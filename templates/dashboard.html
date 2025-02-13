@@ -1,26 +1,12 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="canonical"
-      href="https://getbootstrap.com/docs/4.5/examples/carousel/"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{ url_for('static', filename='index.css') }}"
-    />
-    <title>RiskAssess | Heart Disease Prediction</title>
-  </head>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}" />
+  <title>RiskAssess | Heart Disease Prediction</title>
   <style>
     button {
       border-style: none;
@@ -34,295 +20,259 @@
       text-align: center;
     }
 
-    form {
+    .form-container {
       margin-top: 3%;
-      margin-left: 29%;
-      margin-right: 21%;
+      padding: 30px;
+      background-color: #fff;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
     }
 
-    form fieldset {
-      padding: 30px;
-      border-width: 20px;
-      border-style: groove;
+    fieldset {
+      padding: 20px;
+      border-width: 2px;
+      border-style: solid;
       border-color: #5a5a5a;
-      background-color: #fff;
+      background-color: #f9f9f9;
     }
 
     fieldset h1 {
       color: #5a5a5a;
       padding-bottom: 20px;
-      margin-left: 35px;
-      display: inline-block;
-      cursor: pointer;
       font-size: 28px;
       text-align: center;
     }
 
-    fieldset label {
-      margin-left: 20px;
-      margin-right: 40px;
-      padding: 23px;
-      font-size: 20px;
-      display: inline-block;
-      width: 240px;
+    .form-group label {
+      font-size: 18px;
+      font-weight: bold;
     }
-    fieldset input {
-      padding: 8px;
-      color: #938c8c;
-    }
-    fieldset input:focus {
-      color: #000;
-    }
-    fieldset button {
-      margin-left: 60px;
-      color: #fff;
-      background-color: #5a5a5a;
-      border-radius: 3px;
-      padding: 13px 39px;
-      text-align: center;
-      letter-spacing: 0.9px;
-      text-decoration: none;
-      margin-right: 15px;
-      line-height: 26px;
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
       font-size: 16px;
-      box-shadow: 0px 1px 3px 0px #5a5a5a;
-      right: 0px;
-      margin-top: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
-    .submit {
-      margin-left: 60px;
-      color: #fff;
+    .form-group select {
+      background-color: #fff;
+    }
+
+    .submit-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
       background-color: #5a5a5a;
-      border-radius: 3px;
-      padding: 13px 39px;
-      text-align: center;
-      letter-spacing: 0.9px;
-      text-decoration: none;
-      margin-right: 10px;
-      line-height: 26px;
-      font-size: 16px;
-      box-shadow: 0px 1px 3px 0px #5a5a5a;
-      right: 100px;
-      margin-top: 15px;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    #link_to_edit {
-      padding-left: 45px;
+    .submit-btn:hover {
+      background-color: #444;
     }
 
-    .fieldset {
-      margin-top: 3%;
-      margin-left: 0%;
-      margin-right: 0%;
-      padding: 30px;
-      border-width: 25px;
-      border-style: ridge;
-      border-color: #257a7a;
-      box-shadow: 6px 13px 13px 0px black;
-      background-color: #ebfffa;
+    @media (max-width: 767px) {
+      .form-container {
+        padding: 15px;
+      }
+
+      .form-group label {
+        font-size: 16px;
+      }
+
+      .form-group input,
+      .form-group select {
+        font-size: 14px;
+      }
+
+      .submit-btn {
+        font-size: 16px;
+      }
     }
   </style>
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#"><b>RISK ASSESS</b></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="/dashboard">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="/disindex">Disease Index</a>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#"><b>RISK ASSESS</b></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/dashboard">Dashboard</a>
           </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">|</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    </header>
-    <br /><br />
-    <h1 style="text-align: center">Heart Disease Prediction</h1>
-    <h5 style="text-align: center">Please enter the patient details</h5>
+          <li class="nav-item">
+            <a class="nav-link" href="/disindex">Disease Index</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">|</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-    <form action="{{ url_for('predict')}}" method="post" class="form-inline">
-      <fieldset>
-        <div class="tabcontent" id="new">
-          <div class="form-group">
-            <label for="age">Age</label>
-            <input
-              class="form-control"
-              type="text"
-              id="age"
-              name="age"
-              required
-              placeholder="Your age.."
-            />
+  <div class="container mt-5">
+    <h1>Heart Disease Prediction</h1>
+    <h5>Please enter the patient details</h5>
+
+    <form action="{{ url_for('predict')}}" method="post">
+      <div class="form-container">
+        <fieldset>
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="age">Age</label>
+                <input type="text" id="age" name="age" required placeholder="Your age.." />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="sex">Sex</label>
+                <select class="form-control" id="sex" name="sex" required>
+                  <option selected>----select option----</option>
+                  <option value="0">Female</option>
+                  <option value="1">Male</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="sex">Sex</label>
-            <select class="form-control" id="sex" name="sex" required>
-              <option selected>----select option----</option>
-              <option value="0">Female</option>
-              <option value="1">Male</option>
-            </select>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="cp">Chest Pain Type</label>
+                <select class="form-control" id="cp" name="cp" required>
+                  <option selected>----select option----</option>
+                  <option value="0">Typical Angina</option>
+                  <option value="1">Atypical Angina</option>
+                  <option value="2">Non-anginal Pain</option>
+                  <option value="3">Asymtomatic</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="trestbps">Resting Blood Pressure</label>
+                <input type="text" id="trestbps" name="trestbps" required placeholder="A number in range [94-200] mmHg" />
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="cp">Chest Pain Type</label>
-            <select class="form-control" id="cp" name="cp" required>
-              <option selected>----select option----</option>
-              <option value="0">Typical Angina</option>
-              <option value="1">Atypical Angina</option>
-              <option value="2">Non-anginal Pain</option>
-              <option value="3">Asymtomatic</option>
-            </select>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="chol">Serum Cholesterol</label>
+                <input type="text" id="chol" name="chol" required placeholder="A number in range [126-564] mg/dl" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="fbs">Fasting Blood Sugar</label>
+                <select class="form-control" id="fbs" name="fbs" required>
+                  <option selected>----select option----</option>
+                  <option value="0">Less than 120 mg/dl</option>
+                  <option value="1">Greater than 120 mg/dl</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="trestbps">Resting Blood Pressure</label>
-            <input
-              class="form-control"
-              type="text"
-              id="trestbps"
-              name="trestbps"
-              required
-              placeholder="A number in range [94-200] mmHg"
-              min="94"
-              max="202"
-            />
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="restecg">Resting ECG Results</label>
+                <select class="form-control" id="restecg" name="restecg" required>
+                  <option selected>----select option----</option>
+                  <option value="0">Normal</option>
+                  <option value="1">Having ST-T wave abnormality</option>
+                  <option value="2">Left ventricular hypertrophy</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="thalach">Max Heart Rate</label>
+                <input type="text" id="thalach" name="thalach" required placeholder="A number in range [71-202] bpm" />
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="chol">Serum Cholesterol</label>
-            <input
-              class="form-control"
-              type="text"
-              id="chol"
-              name="chol"
-              required
-              placeholder="A number in range [126-564] mg/dl"
-              min="126"
-              max="564"
-            />
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="exang">Exercise-induced Angina</label>
+                <select class="form-control" id="exang" name="exang" required>
+                  <option selected>----select option----</option>
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="oldpeak">ST depression</label>
+                <input type="text" id="oldpeak" name="oldpeak" required placeholder="ST depression, typically in [0-6.2]" />
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="fbs">Fasting Blood Sugar</label>
-            <select class="form-control" id="fbs" name="fbs" required>
-              <option selected>----select option----</option>
-              <option value="0">Less than 120 mg/dl</option>
-              <option value="1">Greater than 120 mg/dl</option>
-            </select>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="slope">Slope of the peak exercise ST segment</label>
+                <select class="form-control" id="slope" name="slope" required>
+                  <option selected>----select option----</option>
+                  <option value="0">Upsloping</option>
+                  <option value="1">Flat</option>
+                  <option value="2">Downsloping</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="ca">Number of Major vessels</label>
+                <input type="text" id="ca" name="ca" required pattern="[0-3]" placeholder="Typically in [0-3]" />
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="restecg">Resting ECG Results</label>
-            <select class="form-control" id="restecg" name="restecg" required>
-              <option selected>----select option----</option>
-              <option value="0">Normal</option>
-              <option value="1">Having ST-T wave abnormality</option>
-              <option value="2"> left ventricular hypertrophy </option>
-            </select>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="thal">Thalassemia</label>
+                <select class="form-control" id="thal" name="thal" required>
+                  <option selected>----select option----</option>
+                  <option value="1">Normal</option>
+                  <option value="2">Fixed Defect</option>
+                  <option value="3">Reversible Defect</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="thalach">Max Heart Rate </label>
-            <input
-              class="form-control"
-              type="text"
-              id="thalach"
-              name="thalach"
-              required
-              placeholder="A number in range [71-202] bpm"
-              min="71"
-              max="202"
-            />
-          </div>
-          <div class="form-group">
-            <label for="exang">Exercise-induced Angina</label>
-            <select class="form-control" id="exang" name="exang" required>
-              <option selected>----select option----</option>
-              <option value="0">No</option>
-              <option value="1">Yes</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="oldpeak">ST depression</label>
-            <input
-              class="form-control"
-              type="text"
-              id="oldpeak"
-              name="oldpeak"
-              required
-              placeholder="ST depression, typically in [0-6.2]"
-              min="0"
-              max="6.2"
-            />
-          </div>
-          <div class="form-group">
-            <label for="slope">slope of the peak exercise ST segment</label>
-            <select class="form-control" id="slope" name="slope" required>
-              <option selected>----select option----</option>
-              <option value="0">Upsloping</option>
-              <option value="1">Flat</option>
-              <option value="2">Downsloping</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="ca">Number of Major vessels</label>
-            <input
-              class="form-control"
-              type="text"
-              id="ca"
-              name="ca"
-              required
-              pattern="[0-3]"
-              placeholder="Typically in [0-3]"
-            />
-          </div>
-          <div class="form-group">
-            <label for="thal">Thalassemia</label>
-            <select class="form-control" id="thal" name="thal" required>
-              <option selected>----select option----</option>
-              <option value="1">Normal</option>
-              <option value="2">Fixed Defect</option>
-              <option value="3">Reversible Defect</option>
-            </select>
-          </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button
-            type="submit"
-            class="btn btn-primary btn-lg"
-          >
-            Predict
-          </button>
-        </div>
-      </fieldset>
+
+          <button type="submit" class="submit-btn">Predict</button>
+        </fieldset>
+      </div>
     </form>
+  </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
 </html>
