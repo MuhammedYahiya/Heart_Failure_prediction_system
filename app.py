@@ -92,58 +92,41 @@ def heart():
 def disindex():
     return render_template("disindex.html")
 
-@login_required
 @app.route('/predict', methods=['POST'])
+@login_required
 def predict():
     if request.method == 'POST':
         # Extract input values from the form
-        age = int(request.form['age'])
-        sex = int(request.form['sex'])
-        cp = int(request.form['cp'])
-        trestbps = int(request.form['trestbps'])
-        chol = int(request.form['chol'])
-        fbs = int(request.form['fbs'])
-        restecg = int(request.form['restecg'])
-        thalach = int(request.form['thalach'])
-        exang = int(request.form['exang'])
-        oldpeak = float(request.form['oldpeak'])
-        slope = int(request.form['slope'])
-        ca = int(request.form['ca'])
-        thal = int(request.form['thal'])
+        features = ['age', 'sex', 'cp', 'trestbps', 'chol', 'fbs', 'restecg', 'thalach', 'exang', 'oldpeak', 'slope', 'ca', 'thal']
+        input_data = {feature: [request.form[feature]] for feature in features}
 
-        # Create a NumPy array with the input data
-        new_data = np.array([[age, sex, cp, trestbps, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal]])
-        
+        # Convert to DataFrame to preserve feature names
+        new_data = pd.DataFrame(input_data)
+
+        # Convert numeric values
+        new_data = new_data.astype(float)
+
         # Make prediction using the loaded model
         prediction = model_knn.predict(new_data)
         
-        # Calculate the probability of each class
+        # Calculate probability of each class
         probabilities = model_knn.predict_proba(new_data)[0]
         
         # Calculate the intensity percentage
-        intensity_percentage = max(probabilities) * 100
+        intensity_percentage = probabilities[1] * 100
 
         if prediction == 1:
             res_val = "Oops! You have Chances of Heart Disease."
         else:
-            res_val = "Great! You DON'T chances have Heart Disease."
+            res_val = "Great! You DON'T have chances of Heart Disease."
 
         # Determine sleep cycle based on intensity percentage
-        if intensity_percentage >= 80:
-            sleep_cycle = "9 hours"
-        elif intensity_percentage >= 60:
-            sleep_cycle = "8 hours"
-        elif intensity_percentage >= 40:
-            sleep_cycle = "7 hours"
-        elif intensity_percentage >= 20:
-            sleep_cycle = "6 hours"
-        else:
-            sleep_cycle = "5 hours"
+        sleep_cycle = "9 hours" if intensity_percentage >= 80 else \
+                      "8 hours" if intensity_percentage >= 60 else \
+                      "7 hours" if intensity_percentage >= 40 else \
+                      "6 hours" if intensity_percentage >= 20 else "5 hours"
 
         return render_template('result.html', prediction_text=res_val, intensity_percentage=intensity_percentage, sleep_cycle=sleep_cycle)
-
-
-
 
 
 # Load model and data
